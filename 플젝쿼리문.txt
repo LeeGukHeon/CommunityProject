@@ -1,0 +1,31 @@
+select * from board WHERE DATE_FORMAT(regdate, '%Y-%m-%d') = CURDATE();  --- 오늘자 게시물 조회
+
+
+select boardtitlekr, count(idx) from board WHERE DATE_FORMAT(regdate, '%Y-%m-%d') = CURDATE() group by boardtitlekr limit 1;
+
+-- 제일 많이 게시물 올라온 갤러리 한글명 조회 -> 오늘 글이 많이 올라온 갤러리
+
+
+select boardtitlekr, count(idx) from board WHERE DATE_FORMAT(regdate, '%Y-%m-%d %H') = CURTIME() group by boardtitlekr limit 1;
+
+select boardtitlekr, count(idx) from board WHERE DATE_FORMAT(regdate, '%h') = HOUR(now()) group by boardtitlekr; 현재 시간
+
+
+select boardtitlekr, count(idx) from board where regdate > date_add(now(), interval -1 hour) group by boardtitlekr limit 1;
+
+현재시간으로부터 1시간동안 기록된 글이 제일 많은 갤러리
+
+selectBoardDataAll
+
+boardPagingAll -> selectBoardDataAll
+
+getUserInfo
+insertMemberData
+
+boardPaging
+selectBoardDataCount
+
+matchPw
+searchBoardDataCount
+searchBoardData
+selectMemberDataAll

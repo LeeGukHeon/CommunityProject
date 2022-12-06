@@ -1,0 +1,15 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<th:block th:fragment="configFragment">
+		
+		<link rel="stylesheet" th:href="@{css/reset.css}">
+		<link rel="stylesheet" th:href="@{css/header.css}">
+		<link rel="stylesheet" th:href="@{css/footer.css}">
+		<!-- default_layout 단독 css -->
+		<th:block layout:fragment="css"></th:block>
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+		<!-- default_layout 단독 js -->
+		<th:block layout:fragment="script"></th:block>
+		<title layout:title-pattern="$LAYOUT_TITLE ::: $CONTENT_TITLE"></title>
+		<meta charset="UTF-8">
+	</th:block>
+</html>

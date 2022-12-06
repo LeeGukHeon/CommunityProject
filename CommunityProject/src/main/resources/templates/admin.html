@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default_layout}">
+	<head>
+		<title th:text="관리자"></title>
+	</head>
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" th:href="@{css/admin.css}">
+	</th:block>
+	<th:block layout:fragment="script">
+		<script th:src="@{js/admin.js}"></script>
+	</th:block>
+	<div layout:fragment="content">
+		<div class="main">
+			<div class="admin-users">
+				<h2>사용자 관리</h2>
+				<table>
+					<tr>
+						<th>번호</th>
+						<th>아이디</th>
+						<th>닉네임</th>
+						<th>권한</th>
+						<th>가입일</th>
+						<th>수정/탈퇴</th>
+					</tr>
+					<tr th:each="user:${memberData}">
+						<td th:text="${user.idx}"></td>
+						<td th:text="${user.id}"></td>
+						<td th:text="${user.name}"></td>
+						<td>
+							<select th:value="${user.auth}">
+								<option th:selected="${user.auth}=='admin'" value='admin'>관리자</option>
+								<option th:selected="${user.auth}=='user'" value='user'>사용자</option>
+								<option th:selected="${user.auth}=='withdrawal'" value='withdrawal'>탈퇴</option>
+							</select>
+						</td>
+						<td th:text="${user.regdate}"></td>
+						<td><button class="modify">수정</button><button class="delete">탈퇴</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</html>

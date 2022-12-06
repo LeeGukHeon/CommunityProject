@@ -1,0 +1,137 @@
+@charset "UTF-8";
+.main-contents{
+	display:flex;
+	justify-content:space-between;
+}
+.main-boards{
+	width:70%;
+	margin-right:30px;
+}
+.main-login{
+	width:20%;
+}
+.main-recentboard,
+.main-popularboard{
+	width:100%;
+	margin-bottom:100px;
+}
+
+.main-boards table{
+	width:100%;
+	text-align:center;
+	border-collapse:collapse;
+	table-layout: fixed;
+	border: 1px solid #ccc;
+}
+.main-boards table tr{
+	height:50px;
+}
+.main-boards table tr:nth-child(1), .main-boards table th:nth-child(1){
+	background-color: #a60303;
+	color:white;
+	font-weight:bold;
+}
+.main-recentboard table td:nth-child(1), .main-recentboard table td:nth-child(2), .main-recentboard table th:nth-child(1), .main-recentboard table th:nth-child(2){
+	width:10%;
+}
+.main-recentboard table td:nth-child(4), .main-recentboard table th:nth-child(4){
+	width:10%;
+}
+.main-recentboard table td:nth-child(5), .main-recentboard table th:nth-child(5){
+	width:20%;
+}
+.main-recentboard table td:nth-child(6), .main-recentboard table th:nth-child(6){
+	width:10%;
+}
+.main-popularboard table td:nth-child(1), .main-popularboard table th:nth-child(1){
+	width:10%;
+}
+.main-popularboard table td:nth-child(3), .main-popularboard table th:nth-child(3){
+	width:10%;
+}
+.main-popularboard table td:nth-child(4),.main-popularboard table th:nth-child(4){
+	width:20%;
+}
+.main-popularboard table td:nth-child(5),.main-popularboard table th:nth-child(5){
+	width:10%;
+}
+.main-boards table tr:nth-child(2n) {
+	background-color:#f9f9f9;
+}
+.main-boards table tr:nth-child(n+2):hover{
+	cursor:pointer;
+	background-color:#f3f3f3;
+}
+
+.main-popularboard h3, h4, .main-recentboard h3{
+	margin-bottom:20px;
+}
+
+.main-login form{
+	border : 1px solid #ccc;
+	padding: 10px 10px;
+}
+.main-logged{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	width:223.67px;
+	height:175px;
+	border : 1px solid #ccc;
+	padding: 10px 10px;
+}
+
+.main-loginhandler{
+	display:flex;
+	justify-content: space-between;
+}
+.main-login-input{
+	width:100%;
+}
+.main-login-input input, .main-logged-mypage input{
+	width:100%;
+	font-size:14px;
+	outline:0;
+	padding:8px 14px;
+	border: 1px solid #ccc;
+	margin-bottom:10px;
+}
+.main-login-input input[type='submit'], .main-logged-mypage input{
+	background-color:#A60303;
+	border:0;
+	color:white;
+	font-weight:bold;
+	cursor:pointer;
+}
+.main-login-regist, .main-logged-out{
+	text-align:right;
+	
+}
+.main-login-regist a, .main-logged-out a{
+	color: black;
+	font-size:12px;
+}
+.main-login-regist a:hover, .main-logged-out a:hover{
+	color: #4f4f4f;
+}
+.main-logged-userinfo{
+	font-size:14px;
+	margin-bottom:10px;
+}
+.main-logged-userinfo p{
+	margin-bottom : 10px;
+}
+.main-logged-userinfo a{
+	margin-bottom : 10px;
+	color:black;
+	text-decoration: none;
+}
+.showmore{
+	margin-top:20px;
+	text-align:right;
+}
+.showmore a{
+	color:black;
+	text-decoration: none;
+	
+}

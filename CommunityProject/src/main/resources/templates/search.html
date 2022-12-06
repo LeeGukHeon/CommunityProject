@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default_layout}">
+<head>
+	<title>검색결과</title>
+</head>
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{css/search.css}">
+</th:block>
+<div layout:fragment="content">
+	<div class="main">
+		<div class="main-board">
+			<span th:if="${not #lists.isEmpty(boardData)}" class="total-page-count" th:text="|총 페이지수 : ${pageCount}개|"></span>
+			<table>
+				<tr>
+					<th>글번호</th>
+					<th>갤러리</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>조회수</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(boardData)}">
+						<td colspan="6">데이터가 없습니다</td>
+					</tr>
+					<tr th:unless ="${#lists.isEmpty(boardData)}" th:each="board:${boardData}" th:onclick="|location.href = '@{/showBoard(boardtitle=${board.boardtitle},idx=${board.idx})}'|">
+						<td th:text="${board.idx}"></td>
+						<td th:text="${board.boardtitlekr}"></td>
+						<td th:if="${board.cCount} == 0" th:text="${board.title}"></td>
+						<td th:unless="${board.cCount} == 0" th:text="|${board.title} (${board.cCount})|"></td>
+						<td th:text="${board.writer}"></td>						
+						<td th:text="${board.regdate.split(' ')[0]}"></td>
+						<td th:text="${board.views}"></td>
+					</tr>
+			</table>
+			<br />
+			<th:block th:if="${not #lists.isEmpty(boardData)}"> 
+			<div class="paging">
+				<!-- 한 페이지에 보여줄 갯수 : 5 -->
+				<!--  현재 페이지 = currentPage -->
+				<!--  전체 페이지 수 : pageCount -->
+				<!-- 페이지 2이상, 2 - 12345, 3 23456 ... , 현재페이지+3 < pageCount -->
+				
+				<th:block th:if="${currentPage} == 1">
+					<th:block th:if="${pageCount} < 5">
+						<div class="paging-pages">
+						
+						<a th:each="num:${#numbers.sequence(0, pageCount-1)}" th:href="@{/search(searchOption=${searchOption},searchValue=${searchValue},page=${numStat.count})}" th:text="${numStat.count}"></a>
+						</div>
+					</th:block>
+					<th:block th:unless="${pageCount} < 5">
+						<th:block th:if="${currentPage} == 1">
+							<div class="paging-pages">
+								<a th:each="num:${#numbers.sequence(0, pageCount-1)}" th:href="@{/search(searchOption=${searchOption},searchValue=${searchValue},page=${numStat.count})}" th:text="${numStat.count}"></a>
+								...
+							</div>
+						</th:block>
+						<th:block th:unless="${currentPage} == 1">
+							<div class="paging-pages" th:if="${currentPage} > 1 and ${currentPage}+3 < ${pageCount}">
+						<a th:each="num:${#numbers.sequence(0, pageCount-1)}" th:href="@{/search(searchOption=${searchOption},searchValue=${searchValue},page=${numStat.count})}" th:text="${numStat.count}"></a>
+						...
+						</div>
+						<div class="paging-pages" th:unless="${currentPage} > 1 and ${currentPage}+3 < ${pageCount}">
+						<a th:each="num:${#numbers.sequence(0, pageCount-1)}" th:href="@{/search(searchOption=${searchOption},searchValue=${searchValue},page=${numStat.count})}" th:text="${numStat.count}"></a>
+						...
+						</div>
+						</th:block>
+						
+					</th:block>
+				</th:block>
+				<th:block th:unless="${currentPage} == 1">
+					<div class="paging-pages" th:if="${currentPage} > 1 and ${currentPage}+3 < ${pageCount}">
+					<a th:each="num:${#numbers.sequence(0, pageCount-1)}" th:href="@{/search(searchOption=${searchOption},searchValue=${searchValue},page=${numStat.count})}" th:text="${numStat.count}"></a>
+					...
+					</div>
+				<div class="paging-pages" th:unless="${currentPage} > 1 and ${currentPage}+3 < ${pageCount}">
+					<a th:each="num:${#numbers.sequence(0, pageCount-1)}" th:href="@{/search(searchOption=${searchOption},searchValue=${searchValue},page=${numStat.count})}" th:text="${numStat.count}"></a>
+
+				</div>
+				</th:block>
+				
+				
+				
+				<div class="paging-search">
+					<form method="get">
+					<input type="hidden" th:name="boardtitle" th:value="${boardData[0].boardtitle}"/>
+					<input type="text" th:name="page"/>
+					<input type="submit" value="go" />
+					</form>
+				</div>
+			</div>
+			</th:block>
+			<div class="paging-gomain">
+				<a href="/main">메인페이지로</a>
+			</div>
+			
+		</div>
+	</div>
+</div>
+</html>

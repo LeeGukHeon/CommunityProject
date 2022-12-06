@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MemberMapper">   
+
+   <insert id="insertMemberData">
+      INSERT INTO member VALUES (null, #{id}, #{pw} , #{name}, default, NOW())         
+   </insert>
+
+   <select id="selectMemberDataOne" resultType="com.example.demo.dto.MemberDto">
+      SELECT idx, id, pw, name, regdate FROM member where id = #{id}
+   </select>
+	<select id="duplicate" resultType="int">
+		SELECT COUNT(idx) FROM member WHERE id = #{id}
+	</select>
+   <update id="updateMemberData" parameterType="com.example.demo.dto.MemberDto">
+      UPDATE member SET pw = #{pw}, name = #{name} WHERE idx = #{idx}
+   </update>
+   <update id="secession" parameterType="String">
+      UPDATE member SET auth = "withdrawal" WHERE id = #{id}
+   </update>
+   <update id="updateuserauth" parameterType="String">
+   	 UPDATE member SET auth = #{auth} WHERE id = #{id};
+   </update>
+
+   <delete id="deleteMemberData">
+      DELETE FROM member WHERE id =  #{id}
+   </delete>
+
+   <select id="selectMemberDataAll" resultType="com.example.demo.dto.MemberDto">
+      SELECT * FROM member
+   </select>
+
+   <select id="selectMemberDataCount"  resultType="int">
+      SELECT COUNT(idx) FROM member
+   </select>
+   <select id="matchPw" resultType="int">
+   	  SELECT COUNT(idx) FROM member WHERE id = #{id} AND pw = #{pw}
+   </select>
+   <select id="getUserAuth" resultType="String">
+   	  SELECT auth FROM member WHERE id = #{id} AND pw = #{pw}
+   </select>
+   <select id="getUserInfo" resultType="com.example.demo.dto.MemberDto">
+   	  SELECT id, name, auth FROM member WHERE id = #{id} AND pw = #{pw}
+   </select>
+</mapper>

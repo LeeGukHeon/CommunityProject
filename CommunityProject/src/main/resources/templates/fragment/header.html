@@ -1,0 +1,31 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<div class="header" th:fragment="headerFragment">
+		<div class="header-top">
+			<a th:if="${session.login}!=null" href="/logout">로그아웃</a>
+		</div>
+		<div class="header-middle">
+			<div class="header-middle-logo" onClick="location.href='/main'">
+				<img src="/images/logo.png" />
+				<h1>Community</h1>
+			</div>
+			<div class="header-middle-search">
+				<form method="get" th:action="@{/search(searchValue=searchOption)}">
+					<select value="" name="searchOption">
+						<option value="title">제목</option>
+						<option value="writer">작성자</option>
+					</select>
+					<input type="text" name="searchValue" autocomplete="false"/>
+					<input type="submit" value="검색" />
+				</form>
+			</div>
+		</div>
+		<div class="nav">
+			<ul>
+			<li><a href="/board?boardtitle=game">게임</a></li>
+			<li><a href="/board?boardtitle=music">음악</a></li>
+			<li><a href="/board?boardtitle=movie">영화</a></li>
+			<li><a href="/board?boardtitle=book">독서</a></li>
+			</ul>
+		</div>
+	</div>
+</html>

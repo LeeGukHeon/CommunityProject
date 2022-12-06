@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default_layout}">
+	<head>
+		<title th:text="|${data.title}|"></title>
+	</head>
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" th:href="@{css/showBoard.css}">
+	</th:block>
+	<div layout:fragment="content">
+		<div class="main">
+			<h2 class="boardtype" th:text="|${data.boardtitlekr}갤러리|"></h2>
+			<div th:each="board:${data}">
+			<!-- 제목, 작성자, 인덱스 -->
+				<div class="content-title">			
+					<h3 th:text="${board.title}"></h3>		
+				</div>
+				<div class="content-info">
+					<div>
+					<span th:text="${board.writer}"></span>
+					<span th:text="${board.regdate}"></span>
+					</div>
+					<div>
+					<span th:text="|조회수 : ${board.views}|"></span>
+					</div>
+				</div>
+			<!-- 본문 -->
+				<div class="content-content" th:text="${board.content}">>
+					
+				</div>
+			<div class="content-owner">
+				<th:block th:if=" ${session.login} != null and ${session.login.id} == ${board.id} or ${session.login} != null and ${session.login.auth} == 'admin' ">
+					<a th:href="@{/updateBoard(idx=${board.idx})}">수정</a>
+					<a onclick="return confirm('정말 삭제하시겠습니까?')"  th:href="@{/deleteBoard(idx=${board.idx})}">삭제</a>
+				</th:block>
+			</div>
+			<div class="golist">
+				<a th:href="@{/board(boardtitle=${data.boardtitle})}">목록 보기</a>
+			</div>
+			<!-- 댓글 -->
+				<div class="content-comment-input">
+					<th:block th:if="${session.login} != null">
+					<form method="post" action="/addcomment">
+						<input type="hidden" th:value="${data.idx}" name="bIdx" id="bIdx" />
+						<div class="content-comment-input-name">
+							<input id="cWriter" type="hidden" name="cWriter" th:value="${session.login.name}" readOnly/>
+						</div>
+						<div class="content-comment-input-handler">
+							<textarea placeholder="댓글을 입력해주세요" name="cContent" id="cContent" ></textarea>
+							<button type="submit">댓글달기</button>
+						</div>
+					</form>
+					</th:block>
+				</div>
+				<div class="content-comment">
+					<h3 th:text="|댓글목록 (${commentCount})개|"></h3>
+					<div class="content-comment-list" th:each="commentData:${commentData}" id="content-comment-list">
+						<th:block th:if="${session.login != null} and ${session.login.name}==${commentData.cWriter}">
+							<form method="post" action="/deletecomment"  class="content-comment-edit">
+								
+								<input type="hidden" name="idx" th:value="${commentData.idx}"/>
+								<input type="hidden" name="bIdx" th:value="${commentData.bIdx}"/>
+								<button onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+							</form>
+						</th:block>
+						<table>
+							<tr>
+								<th th:text="${commentData.cWriter}"></th>
+								<td th:text="${commentData.cRegdate}"></td>
+							</tr>
+							<tr>
+								<td colspan="2"  th:text="${commentData.cContent}"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>

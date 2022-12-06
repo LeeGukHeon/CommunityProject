@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default_layout}">
+	<head>
+		<title>글쓰기</title>
+	</head>
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" th:href="@{css/write.css}">
+	</th:block>
+	<div layout:fragment="content">
+		<div class="main">
+			<h2 class="main-write" th:text="글쓰기"></h2>
+			<form method="post" action="writeProc">
+				<div>
+					<input type="text" class="content-title" name="title" placeholder="제목을 입력해주세요"  required autocomplete="off"/>
+					<input type="hidden" name="writer" th:value="${session.login.name}" readOnly/>
+					<input type="hidden" name="id" th:value="${session.login.id}" readOnly/>
+				</div>	
+				<div>
+					<textarea class="content-content" name="content" placeholder="내용을 입력해주세요" ></textarea>
+				</div>
+				<div class="content-upload">
+					<input type="hidden" name="boardtitle" th:value="${boardtitle}"/>
+					<th:block th:switch="${boardtitle}">
+						<input th:case="game" type="hidden" name="boardtitlekr" th:value="게임"/>
+						<input th:case="music" type="hidden" name="boardtitlekr" th:value="음악"/>
+						<input th:case="movie" type="hidden" name="boardtitlekr" th:value="영화"/>
+						<input th:case="book" type="hidden" name="boardtitlekr" th:value="독서"/>
+					</th:block>
+					<input type="submit" value="글쓰기"/><input type="button" value="취소" onClick="history.back();"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</html>

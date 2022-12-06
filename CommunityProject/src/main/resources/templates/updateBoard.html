@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default_layout}">
+	<head>
+		<title>글쓰기</title>
+	</head>
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" th:href="@{css/write.css}">
+	</th:block>
+	<div layout:fragment="content">
+		<div class="main">
+			<h2 class="main-write" th:text="글쓰기"></h2>
+			<form method="post" action="updateProc">
+			    <input type="hidden" name="idx" th:value="${data.idx}" />
+			    <input type="hidden" name="id" th:value="${data.id}" />
+				<div>
+					<input type="text" class="content-title" name="title" placeholder="제목을 입력해주세요" th:value="${data.title}" required autocomplete="off"/>
+					<input type="hidden" name="writer" th:value="${session.login.name}" readOnly/>
+				</div>
+				<div>
+					<textarea class="content-content" name="content" th:text="${data.content}"></textarea>
+				</div>
+				<div class="content-upload">
+					<input type="hidden" name="boardtitle" th:value="${data.boardtitle}"/>
+					<input type="submit" value="수정"/><input type="button" value="취소" onClick="history.back();"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</html>

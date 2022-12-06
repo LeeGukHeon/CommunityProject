@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BoardMapper">   
+
+   <insert id="insertBoardData">
+      INSERT INTO board VALUES (null,#{boardtitle}, #{boardtitlekr} , #{title}, #{id}, #{writer} , #{content},1,0, NOW())         
+   </insert>
+
+   <select id="selectBoardDataOne" resultType="com.example.demo.dto.BoardDto">
+      SELECT * FROM board where idx = #{idx}
+   </select>
+
+   <update id="updateBoardData" parameterType="com.example.demo.dto.BoardDto">
+      UPDATE board SET title = #{title}, writer = #{writer}, content = #{content} WHERE idx = #{idx}
+   </update>
+   
+   <update id="updateBoardUser" parameterType="com.example.demo.dto.BoardDto">
+      UPDATE board SET writer = #{writer} WHERE id = #{id}
+   </update>
+   
+   <update id="updateViews"  parameterType="int">
+   	  UPDATE board SET views = views+1 WHERE idx = #{idx}
+   </update>
+   
+   <update id="updateCCount"  parameterType="int">
+   	  UPDATE board SET cCount = cCount+1 WHERE idx = #{idx}
+   </update>
+   <update id="minusCCount"  parameterType="int">
+   	  UPDATE board SET cCount = cCount-1 WHERE idx = #{idx}
+   </update>
+
+   <delete id="deleteBoardData">
+      DELETE FROM board WHERE idx =  #{idx}
+   </delete>
+ <!-- 전체 게시물 갯수 가져오는건데 일단 안써서 주석 
+ <select id="selectBoardDataCountAll"  resultType="int">
+      SELECT COUNT(idx) FROM board
+   </select>
+ -->
+   <select id="selectBoardDataCount"  resultType="int" parameterType="String">
+      SELECT COUNT(idx) FROM board WHERE boardtitle = #{boardtitle}
+   </select>
+   <select id="searchBoardData" resultType = "com.example.demo.dto.BoardDto" parameterType="String">
+   	 SELECT * FROM board WHERE ${searchOption} LIKE '%${searchValue}%' ORDER BY idx DESC Limit ${page}, 10
+   </select>
+   <select id="searchBoardDataCount" resultType="int">
+   	  SELECT COUNT(idx) FROM board WHERE ${searchOption} LIKE '%${searchValue}%'
+   </select>
+	<select id="boardPaging" resultType="com.example.demo.dto.BoardDto" parameterType="String">
+		SELECT * FROM board WHERE boardtitle = #{boardtitle} ORDER BY idx DESC LIMIT ${page}, ${offset}
+	</select>
+	<select id="selectBoardDataAll" resultType="com.example.demo.dto.BoardDto" parameterType="String">
+		SELECT * FROM board ORDER BY idx DESC LIMIT ${offset}
+	</select>
+	<!-- 1시간 이내에 가장 글이 많이 등록된 갤러리 -->
+	<select id="recentPopular" resultType = "string">
+		SELECT boardtitle from board where regdate > date_add(now(), interval -1 hour) group by boardtitle limit 1;
+	</select>
+	<!-- 해당유저가 작성한 글 카운트 -->
+	<select id="selectUserBoardCount" resultType = "int">
+		SELECT count(idx) from board where id = #{id}
+	</select>
+	<!-- 해당유저가 작성한 글 목록 전체 -->
+	<select id="selectUserBoardDataAll" resultType = "com.example.demo.dto.BoardDto">
+		SELECT * from board where id = #{id} ORDER BY idx DESC
+	</select>
+	<!-- 해당유저가 작성한 글 목록 초반10개 -->
+	<select id="selectUserBoardDataprev" resultType = "com.example.demo.dto.BoardDto">
+		SELECT * from board where id = #{id} ORDER BY idx DESC limit 10;
+	</select>
+</mapper>

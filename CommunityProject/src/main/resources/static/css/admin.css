@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+.admin-users h2{
+	color:#a60303;
+	margin-bottom:50px;
+}
+.admin-users table{
+	width:100%;
+	text-align:center;
+	border-collapse:collapse;
+	table-layout: fixed;
+	border: 1px solid #ccc;
+}
+.admin-users table tr{
+	height:50px;
+}
+.admin-users table tr:nth-child(1), .admin-users table th:nth-child(1){
+	background-color: #a60303;
+	color:white;
+	font-weight:bold;
+}
+.admin-users table td:nth-child(1), table th:nth-child(1) {
+	width:10%;
+}
+.admin-users table td:nth-child(2), table th:nth-child(2), table td:nth-child(3), table th:nth-child(3){
+	width:20%;
+}
+.admin-users table td:nth-child(5), table th:nth-child(5){
+	width:20%;
+}
+.admin-users table td:nth-child(6), table th:nth-child(6){
+	width:10%;
+}
+
+.admin-users table tr:nth-child(2n) {
+	background-color:#f9f9f9;
+}
+.admin-users table tr:nth-child(n+2):hover{
+	background-color:#f3f3f3;
+}
+.admin-users table td button{
+	cursor: pointer;
+	margin : 0 5px;
+	padding: 10px 16px;
+	border:0;
+	background-color:inherit;
+}
+.admin-users table td select{
+	padding: 10px 16px;
+}
+.admin-users table td button:hover{
+	color:#a60303;
+}

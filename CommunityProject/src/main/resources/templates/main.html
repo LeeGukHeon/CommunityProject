@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default_layout}">
+	<head>
+		<title>메인</title>
+	</head>
+	<th:block layout:fragment="css">
+		<link rel="stylesheet" th:href="@{css/main.css}">
+	</th:block>
+	<div layout:fragment="content">
+		<div class="main-contents">
+			<div class="main-boards">
+				<div class="main-recentboard">
+					<h3>최근 글 목록</h3>
+					<table>
+						<tr>
+							<th>번호</th>
+							<th>갤러리</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>조회수</th>
+						</tr>
+						<tr th:each="board:${boardData}" th:onclick="|location.href = '@{/showBoard(boardtitle=${board.boardtitle},idx=${board.idx})}'|">
+							<td th:text="${board.idx}"></td>
+							<td th:text="${board.boardtitlekr.substring(0, 2)}"></td>
+							<td th:if="${board.cCount} == 0" th:text="${board.title}"></td>
+						<td th:unless="${board.cCount} == 0" th:text="|${board.title} (${board.cCount})|"></td>
+							<td th:text="${board.writer}"></td>
+							<td th:text="${board.regdate.split(' ')[0]}"></td>
+							<td th:text="${board.views}"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="main-popularboard">
+					<h3>최근 1시간 이내 가장 글이 많이 올라온 갤러리</h3>
+					<h4 th:if="${recentPopular == null}" >-</h4>
+					<h4 th:unless="${recentPopular == null}" th:text="${recentPopular[0].boardtitlekr}+갤러리"></h4>
+					<table>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>조회수</th>
+					</tr>
+					<tr th:if="${recentPopular == null}">
+						<td colspan="5">데이터가 없습니다</td>
+					</tr>
+					<tr th:unless ="${recentPopular == null}" th:each="board:${recentPopular}" th:onclick="|location.href = '@{/showBoard(boardtitle=${board.boardtitle},idx=${board.idx})}'|">
+						<td th:text="${board.idx}"></td>
+						<td th:if="${board.cCount} == 0" th:text="${board.title}"></td>
+						<td th:unless="${board.cCount} == 0" th:text="|${board.title} (${board.cCount})|"></td>
+						<td th:text="${board.writer}"></td>
+						<td th:text="${board.regdate.split(' ')[0]}"></td>
+						<td th:text="${board.views}"></td>
+					</tr>
+				</table>
+					<div class="showmore">
+						<a  th:if="${recentPopular != null}" th:href='@{/board(boardtitle=${recentPopular[0].boardtitle})}'>더보기</a>
+					</div>
+				</div>
+			</div>
+			<div th:if="${session.login}==null" class="main-login">
+				<form action="loginProc" method="post">
+					<div class="main-login-input">
+						<input type="text" name="id" placeholder="아이디를 입력해주세요" required autocomplete="off"/>
+						<input type="password" name="pw" placeholder="비밀번호를 입력해주세요" required autocomplete="off"/>
+						<input type="submit" value="로그인"/>
+					</div>
+					<div class="main-login-regist">
+						<a href = '/regist'>회원가입</a>
+					</div>
+				</form>
+			</div>
+			<div  class="main-logged" th:unless="${session.login}==null">
+				<div class="main-logged-userinfo">
+					<p th:text="|${session.login.name}님 반갑습니다|"></p>
+					<a href="/mycontentlist" th:text="|내가 쓴 글 : ${count}개|"></a>
+				</div>
+				<div class="main-logged-mypage">
+					<input type='button' value="마이페이지" th:onclick="location.href='/mypage'"/>
+					<input type='button' th:if="${session.login}!=null and ${session.login.auth}==admin" onclick= "location.href='/admin'" value="관리자페이지" />
+				</div>
+				<div class="main-logged-out">
+					<a href="/logout">로그아웃</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>

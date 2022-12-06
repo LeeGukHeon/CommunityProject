@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+.boardtype {
+	margin-bottom:50px;
+	color:#a60303;
+}
+.content-title{
+	padding: 10px 0;
+}
+.content-info {
+	padding: 20px 0;
+	margin-bottom : 100px;
+	border-bottom : 1px solid #ccc;
+}
+.content-info{
+	display:flex;
+	justify-content: space-between;
+}
+.content-info span{
+	margin-right:20px;
+}
+
+.content-content{
+	font-size:16px;
+	min-height:auto;
+	margin-bottom:100px;
+}
+.content-owner{
+	text-align:right;
+	margin-bottom:30px;
+}
+.content-owner a{
+	color:black;
+}
+.content-comment-edit{
+	text-align: right;
+}
+.content-comment-edit button{
+	border:0;
+	background-color: white;
+	cursor:pointer;
+}
+.content-comment-input {
+	margin-bottom : 100px;
+}
+
+.content-comment-input-name input{
+	width:10%;
+	padding: 6px 4px;
+	outline:0;
+	margin-bottom:10px;
+	text-align: center;
+}
+.content-comment-input-handler{
+	display:flex;
+	justify-content: space-between;
+}
+.content-comment-input textarea{
+	width:90%;
+	resize:none;
+	outline:0;
+	padding:10px 10px;
+	overflow-y:hidden;
+}
+.content-comment-input button{
+	width:10%;
+}
+.content-comment h3{
+	margin-bottom:20px;
+}
+.content-comment{
+	margin-bottom:10px;
+	
+}
+.content-comment-list table{
+	width:100%;
+	border-bottom:1px solid #ccc;
+}
+.content-comment-list table tr:nth-child(1){
+	height:30px;
+}
+.content-comment-list table th:nth-child(1) {
+	text-align:left;
+}
+.content-comment-list table td:nth-child(2) {
+	text-align:right;
+}
+.golist{
+	text-align:right;
+	margin-bottom:50px;
+}
+.golist a{
+	text-decoration: none;
+	color:black;
+}

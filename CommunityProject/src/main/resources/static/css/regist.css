@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.regist-title{
+	color:#a60303;
+	margin-bottom:100px;
+}
+.regist-handler{
+	display: flex;
+	flex-direction: column;
+	margin-bottom:20px;
+}
+#duplicate{
+	cursor: pointer;
+}
+.regist-handler label{
+	margin-bottom:10px;
+	font-size:16px;
+	font-weight:bold;
+}
+.regist-handler input{
+	width:300px;
+	padding:10px 16px;
+	font-size:16px;
+	outline:0;
+}
+.regist-handler button{
+	margin-left:10px;
+	padding:10px 16px;
+	outline:0;
+	border:0;
+	background-color: #a60303;
+	color:white;
+	font-weight:bold;
+}
+.regist-handler-terms{
+	margin-bottom:20px;
+}
+.regist-handler-terms-chkbox{
+	display:flex;
+	justify-content:flex-end;
+	align-items:center;
+	margin-bottom:10px;
+}
+.regist-handler-terms-chkbox input{
+	margin-left:5px;
+}
+.regist-handler-terms textarea{
+	resize: none;
+	height:200px;
+	width:100%;
+	outline:0;
+}
+.regist-handler-submit{
+	text-align: center;
+}
+.regist-handler-submit input{
+	margin-left:10px;
+	padding:10px 16px;
+	outline:0;
+	border:0;
+	background-color: #a60303;
+	color:white;
+	font-weight:bold;
+}

@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+.updateuser-title{
+	color:#A60303;
+	margin-bottom:100px;
+}
+.updateuser-wrapper{
+	display:flex;
+}
+.mypage-menu{
+	width:20%;
+	margin-right: 10%;
+}
+.mypage-menu h4{
+	margin-bottom:30px;
+}
+.mypage-menu li{
+	list-style: none;
+	padding:10px 0;
+	border-bottom:1px solid #ccc;
+	margin-bottom:20px;
+}
+.mypage-menu li a{
+	color:black;
+	text-decoration: none;
+}
+.updateuser-datainput{
+	width:70%;
+}
+.regist-handler{
+	display: flex;
+	flex-direction: column;
+	margin-bottom:20px;
+}
+.regist-handler label{
+	margin-bottom:10px;
+	font-size:16px;
+	font-weight:bold;
+}
+.regist-handler input{
+	width:300px;
+	padding:10px 16px;
+	font-size:16px;
+	outline:0;
+}
+.regist-handler-submit{
+	text-align: left;
+	margin-top:50px;
+}
+.regist-handler-submit input{
+	padding:10px 16px;
+	outline:0;
+	border:0;
+	background-color: #a60303;
+	color:white;
+	font-weight:bold;
+	cursor:pointer;
+}
+#inputid{
+	background-color: #ccc;
+	border:1px solid black;
+	cursor:default;
+}

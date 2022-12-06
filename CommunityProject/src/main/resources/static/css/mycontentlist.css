@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+.mycontentlist-wrapper{
+	display: flex;
+}
+.mypage-menu{
+	width:20%;
+	margin-right: 10%;
+}
+.mypage-menu h4{
+	margin-bottom:30px;
+}
+.mypage-menu li{
+	list-style: none;
+	padding:10px 0;
+	border-bottom:1px solid #ccc;
+	margin-bottom:20px;
+}
+.mypage-menu li a{
+	color:black;
+	text-decoration: none;
+}
+.mypage-board{
+	width:70%;
+}
+
+.mypage-contentlist{
+	color:#A60303;
+	margin-bottom:100px;
+}
+
+.main table{
+	width:100%;
+	text-align:center;
+	border-collapse:collapse;
+	table-layout: fixed;
+	border: 1px solid #ccc;
+}
+.main table tr{
+	height:50px;
+}
+.main table tr:nth-child(1), .main-boards table th:nth-child(1){
+	background-color: #a60303;
+	color:white;
+	font-weight:bold;
+}
+
+.main table td:nth-child(1), table td:nth-child(2), table th:nth-child(1), table th:nth-child(2){
+	width:10%;
+}
+.main table td:nth-child(4), table th:nth-child(4){
+	width:10%;
+}
+.main table td:nth-child(5), table th:nth-child(5){
+	width:20%;
+}
+.main table td:nth-child(6), table th:nth-child(6){
+	width:10%;
+}
+
+.main table tr:nth-child(2n) {
+	background-color:#f9f9f9;
+}
+.main table tr:nth-child(n+2):hover{
+	cursor:pointer;
+	background-color:#f3f3f3;
+}
+.mypage-link{
+	margin-bottom:20px;
+}
+.mypage-link a{
+	text-decoration: none;
+	color:black;
+}

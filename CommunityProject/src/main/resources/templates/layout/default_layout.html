@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head th:replace="fragment/config :: configFragment">
+		<title layout:title-pattern="$LAYOUT_TITLE ::: $CONTENT_TITLE">커뮤니티</title>
+	</head>
+	<div class="wrapper">
+	<!-- header fragment 사용 -->
+	<th:block th:replace="fragment/header :: headerFragment"></th:block>
+	
+	<!-- 현재 layout을 사용하는 content fragment의 내용을 삽입 -->
+	<th:block layout:fragment="content" class="main-wrapper"></th:block>
+	
+	<!--  나중에 footer만들기 -->
+	<th:block th:replace="fragment/footer :: footerFragment"></th:block>
+	</div>
+</html>
